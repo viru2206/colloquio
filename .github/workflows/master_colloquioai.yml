@@ -28,7 +28,9 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+            pip install -r requirements.txt
+            pip install gunicorn
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
@@ -58,6 +60,8 @@ jobs:
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'colloquioai'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B3C95824ABD34E6A83E539F343551A02 }}
+         app-name: 'colloquioai'
+         slot-name: 'Production'
+         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B3C95824ABD34E6A83E539F343551A02 }}
+         startup-command: 'gunicorn -b 0.0.0.0:$PORT app:app'
+
