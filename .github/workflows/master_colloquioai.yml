@@ -61,3 +61,8 @@ jobs:
           app-name: 'colloquioai'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F96B6190FBBB441C96E4BDFFF762DC7E }}
+          
+      - name: Show deployment logs
+        run: |
+         cat ${{ env.RUNNER_TEMP }}/action_run/*/*
+
