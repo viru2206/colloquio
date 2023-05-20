@@ -63,5 +63,5 @@ jobs:
          app-name: 'colloquioai'
          slot-name: 'Production'
          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B3C95824ABD34E6A83E539F343551A02 }}
-         startup-command: 'gunicorn -b 0.0.0.0:$PORT app:app'
+
 
